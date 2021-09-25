@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Work/Report01/app/src/main/res/layout/activity_all_contacts.xml" value="0.1" />
         <entry key="..\:/Work/Report01/app/src/main/res/layout/activity_all_list.xml" value="0.16666666666666666" />
         <entry key="..\:/Work/Report01/app/src/main/res/layout/activity_detail.xml" value="0.22" />
+        <entry key="..\:/Work/Report01/app/src/main/res/layout/activity_insert_contact.xml" value="0.1" />
         <entry key="..\:/Work/Report01/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
         <entry key="..\:/Work/Report01/app/src/main/res/layout/activity_update.xml" value="0.17916666666666667" />
       </map>

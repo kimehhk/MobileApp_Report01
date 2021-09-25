@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Report01">
         <activity
+            android:name=".insertContactActivity"
+            android:exported="true" />
+        <activity
             android:name=".DetailActivity"
             android:exported="true" />
         <activity
             android:name=".UpdateActivity"
             android:exported="true" />
         <activity
-            android:name=".allListActivity"
+            android:name=".AllContactsActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
