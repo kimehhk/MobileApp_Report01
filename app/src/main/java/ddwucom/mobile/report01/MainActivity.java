@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.btnBrowseAllList:
                 intent = new Intent(this, AllContactsActivity.class);
+                startActivity(intent);
                 break;
         }
 

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Report01">
         <activity
-            android:name=".insertContactActivity"
+            android:name=".InsertContactActivity"
             android:exported="true" />
         <activity
             android:name=".DetailActivity"
