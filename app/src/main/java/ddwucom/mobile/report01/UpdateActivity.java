@@ -39,9 +39,9 @@ public class UpdateActivity extends AppCompatActivity {
         cursor = db.rawQuery("SELECT * FROM " + ContactDBHelper.TABLE_NAME + " WHERE _id = " + id, null);
 
         while (cursor.moveToNext()) {
-            etTitle.setHint(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_MUSIC_TITLE)));
-            etArtist.setHint(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_ARTIST)));
-            etContent.setHint(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_CONTENT)));
+            etTitle.setText(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_MUSIC_TITLE)));
+            etArtist.setText(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_ARTIST)));
+            etContent.setText(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_CONTENT)));
         }
 
         helper.close();
@@ -52,6 +52,7 @@ public class UpdateActivity extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.btn_updateComplete:
                 updatePost(id);
+                finish();
                 break;
             case R.id.btn_updateCancel:
                 finish();
@@ -61,7 +62,15 @@ public class UpdateActivity extends AppCompatActivity {
 
     public void updatePost(String post_id) {
         SQLiteDatabase db = helper.getWritableDatabase();
-        db.execSQL("UPDATE " + ContactDBHelper.TABLE_NAME + " SET music_title = " + etTitle.getText().toString() + " WHERE _id = " + post_id);
+
+        String title = etTitle.getText().toString();
+        String artist = etArtist.getText().toString();
+        String content = etContent.getText().toString();
+
+        db.execSQL("UPDATE " + ContactDBHelper.TABLE_NAME + " SET music_title = '" + title + "', artist = '" + artist + "', content = '" + content + "' WHERE _id = " + post_id);
+
         helper.close();
+
+
     }
 }

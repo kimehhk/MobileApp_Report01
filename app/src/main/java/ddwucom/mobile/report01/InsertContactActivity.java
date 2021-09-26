@@ -29,22 +29,14 @@ public class InsertContactActivity extends AppCompatActivity {
 
         helper = new ContactDBHelper(this);
 
-        /*SQLiteDatabase db = helper.getReadableDatabase();
-        cursor = db.rawQuery("SELECT _id FROM " + ContactDBHelper.TABLE_NAME, null);
-        cursor.moveToLast();
-
-        int id = Integer.parseInt(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_ID))) + 1;
-
-        Toast.makeText(InsertContactActivity.this, Integer.toString(id), Toast.LENGTH_SHORT).show();
-        helper.close();*/
-
     }
 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_insertComplete:
-                insertPost();
-                finish();
+                if(insertPost() == 1) {
+                    finish();
+                }
                 break;
             case R.id.btn_insertCancel:
                 finish();
@@ -52,7 +44,9 @@ public class InsertContactActivity extends AppCompatActivity {
         }
     }
 
-    public void insertPost() {
+    public int insertPost() {
+        int flag = 0;
+
         SQLiteDatabase db = helper.getReadableDatabase();
         cursor = db.rawQuery("SELECT _id FROM " + ContactDBHelper.TABLE_NAME, null);
         cursor.moveToLast();
@@ -62,11 +56,19 @@ public class InsertContactActivity extends AppCompatActivity {
         String artist = etArtist.getText().toString();
         String content = etContent.getText().toString();
 
-
-        db.execSQL("INSERT INTO " + ContactDBHelper.TABLE_NAME + " VALUES (" + Integer.toString(id) + ", 'user', '" + title + "', '" + artist + "', '" + content + "');");
+        if (title.length() == 0) {
+            Toast.makeText(getApplicationContext(), "제목을 입력하세요", Toast.LENGTH_SHORT).show();
+        } else if (artist.length() == 0) {
+            Toast.makeText(getApplicationContext(), "아티스트를 입력하세요", Toast.LENGTH_SHORT).show();
+        } else if (content.length() == 0) {
+            Toast.makeText(getApplicationContext(), "내용을 입력하세요", Toast.LENGTH_SHORT).show();
+        } else {
+            db.execSQL("INSERT INTO " + ContactDBHelper.TABLE_NAME + " VALUES (" + Integer.toString(id) + ", 'user', '" + title + "', '" + artist + "', '" + content + "');");
+            flag = 1;
+        }
 
         helper.close();
-        cursor.close();
+        return flag;
     }
 
     protected void onDestory() {

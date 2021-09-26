@@ -38,7 +38,7 @@
                 <ListView
                     android:id="@+id/allContacts"
                     android:layout_width="match_parent"
-                    android:layout_height="694dp" />
+                    android:layout_height="607dp" />
             </LinearLayout>
         </ScrollView>
 

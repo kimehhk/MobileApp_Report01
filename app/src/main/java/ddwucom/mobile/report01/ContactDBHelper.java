@@ -18,7 +18,6 @@ public class ContactDBHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, 1);
     }
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + TABLE_NAME + " ( " + COL_ID + " integer primary key autoincrement,"
@@ -26,8 +25,9 @@ public class ContactDBHelper extends SQLiteOpenHelper {
 
 //		샘플 데이터
         db.execSQL("INSERT INTO " + TABLE_NAME + " VALUES (1, 'hong', 'Money', 'LISA', '힙합감성 가득');");
-        db.execSQL("INSERT INTO " + TABLE_NAME + " VALUES (2, 'musicstar', 'cool with it', 'brb', '편집샵에서 나올 것 같은 느낌');");
+        db.execSQL("INSERT INTO " + TABLE_NAME + " VALUES (2, 'musicstar', 'cool with it', 'brb.', '편집샵에서 나올 것 같은 느낌');");
         db.execSQL("INSERT INTO " + TABLE_NAME + " VALUES (3, 'joo', 'Camellia', 'slchld', '봄에 들으면 너무 좋은 곡');");
+        db.execSQL("INSERT INTO " + TABLE_NAME + " VALUES (4, 'sunny', 'SO WHAT', 'STAYC', '기분이 다운될 때 들으면 최고');");
     }
 
     @Override
