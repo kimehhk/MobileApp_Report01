@@ -36,18 +36,6 @@ public class DetailActivity extends AppCompatActivity {
         content = findViewById(R.id.content_detail);
 
         helper = new ContactDBHelper(this);
-
-        SQLiteDatabase db = helper.getReadableDatabase();
-        cursor = db.rawQuery("SELECT * FROM " + ContactDBHelper.TABLE_NAME + " WHERE _id = " + id, null);
-
-        while (cursor.moveToNext()) {
-            name.setText(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_NAME)));
-            title.setText(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_MUSIC_TITLE)));
-            artist.setText(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_ARTIST)));
-            content.setText(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_CONTENT)));
-        }
-
-        helper.close();
     }
 
     public void onClick(View v) {
@@ -60,6 +48,21 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
         }
+    }
+
+    protected void onResume() {
+        super.onResume();
+        SQLiteDatabase db = helper.getReadableDatabase();
+        cursor = db.rawQuery("SELECT * FROM " + ContactDBHelper.TABLE_NAME + " WHERE _id = " + id, null);
+
+        while (cursor.moveToNext()) {
+            name.setText(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_NAME)));
+            title.setText(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_MUSIC_TITLE)));
+            artist.setText(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_ARTIST)));
+            content.setText(cursor.getString(cursor.getColumnIndex(ContactDBHelper.COL_CONTENT)));
+        }
+
+        helper.close();
     }
 
     protected void onDestory() {
